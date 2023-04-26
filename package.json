@@ -10,8 +10,8 @@
   "scripts": {},
   "keywords": [
     "roblox",
-		"typescript",
-		"immut"
+    "typescript",
+    "immut"
   ],
   "homepage": "https://solarhorizon.github.io/immut/",
   "repository": {
@@ -20,11 +20,11 @@
   },
   "author": "SolarHorizon",
   "contributors": [
-		{
-			"name": "Scyfren",
-			"url": "https://github.com/Scyfren"
-		}
-	],
+    {
+      "name": "Scyfren",
+      "url": "https://github.com/Scyfren"
+    }
+  ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
