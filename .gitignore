@@ -8,4 +8,4 @@ Packages/
 # ignore npm pack output
 *.tgz
 # my own test file for quick testing
-src/test.ts
+test.ts
