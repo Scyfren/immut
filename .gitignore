@@ -2,3 +2,10 @@
 build/
 sourcemap.json
 Packages/
+
+# roblox-ts files
+/node_modules
+# ignore npm pack output
+*.tgz
+# my own test file for quick testing
+src/test.ts
