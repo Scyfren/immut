@@ -2,3 +2,8 @@
 build/
 sourcemap.json
 Packages/
+
+/node_modules
+/out
+/include
+*.tsbuildinfo
