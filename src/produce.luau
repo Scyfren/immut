@@ -2,6 +2,9 @@
 local Draft = require(script.Parent.Draft)
 local finishDraft = require(script.Parent.finishDraft)
 local isDraft = require(script.Parent.isDraft)
+local constants = require(script.Parent.constants)
+
+local CLONE = constants.CLONE
 
 -- i've tried two type definitions for recipes, neither of which are that great.
 
@@ -57,10 +60,14 @@ local function produce<T>(base: T, recipe: Recipe<T>): T
 	local proxy = Draft.new(base) :: T
 
 	-- https://discord.com/channels/385151591524597761/402843211707449354/997898224075550760
-	local nextValue = ((recipe :: any)(proxy) or proxy) :: T
+	local nextValue = (recipe :: any)(proxy) :: T?
 
-	if isDraft(nextValue) then
-		nextValue = finishDraft(nextValue)
+	if nextValue == nil then
+		nextValue = proxy
+	else
+		if isDraft(nextValue) and rawget(nextValue, CLONE) then
+			error("An immut producer returned a new value and modified its draft. Either return a new value or modify the draft.")
+		end
 	end
 
 	return nextValue
