@@ -2,25 +2,21 @@ return function()
 	local Draft = require(script.Parent.Draft)
 	local finishDraft = require(script.Parent.finishDraft)
 
-	it("should never accept a value that is not a draft", function()
+	it("should accept a value that is not a draft", function()
 		expect(function()
 			finishDraft({})
-		end).to.throw()
+		end).to.be.ok()
 
 		expect(function()
 			finishDraft(1)
-		end).to.throw()
+		end).to.be.ok()
 
 		expect(function()
 			finishDraft("foo")
-		end).to.throw()
+		end).to.be.ok()
 
 		expect(function()
 			finishDraft(false)
-		end).to.throw()
-
-		expect(function()
-			finishDraft(Draft.new({}))
 		end).to.be.ok()
 	end)
 

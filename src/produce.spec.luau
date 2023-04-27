@@ -1,6 +1,7 @@
 --!nocheck
 return function()
 	local produce = require(script.Parent.produce)
+	local isDraft = require(script.Parent.isDraft)
 
 	it("should not mutate the original table", function()
 		local original = { number = 2 }
@@ -46,5 +47,13 @@ return function()
 
 		expect(new.foo).to.equal(true)
 		expect(new).to.equal(override)
+	end)
+
+	it("should finalize nested drafts when normal table returned with nested drafts", function()
+		local new = produce({}, function(draft)
+			return { draft }
+		end)
+
+		expect(isDraft(new[1])).to.equal(false)
 	end)
 end
