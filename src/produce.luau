@@ -70,6 +70,10 @@ local function produce<T>(base: T, recipe: Recipe<T>): T
 		end
 	end
 
+	if isDraft(nextValue) then
+		nextValue = finishDraft(nextValue)
+	end
+
 	return nextValue
 end
 
