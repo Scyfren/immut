@@ -27,12 +27,15 @@ local CLONE = constants.CLONE
 	Finalize a draft.
 ]=]
 local function finishDraft<T>(draft: T)
-	assert(isDraft(draft), "Immut.finishDraft should only be called on drafts")
+	local final = draft
 
-	local final = rawget(draft :: any, CLONE)
-
-	if final == nil then
-		return rawget(draft :: any, BASE)
+	if isDraft(draft) then
+		local clone = rawget(draft :: any, CLONE)
+		if clone == nil then
+			return rawget(draft :: any, BASE)
+		else
+			final = clone
+		end
 	end
 
 	for key, value in final do

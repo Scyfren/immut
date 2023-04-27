@@ -59,11 +59,7 @@ local function produce<T>(base: T, recipe: Recipe<T>): T
 	-- https://discord.com/channels/385151591524597761/402843211707449354/997898224075550760
 	local nextValue = ((recipe :: any)(proxy) or proxy) :: T
 
-	if isDraft(nextValue) then
-		nextValue = finishDraft(nextValue)
-	end
-
-	return nextValue
+	return finishDraft(nextValue)
 end
 
 return produce
