@@ -2,6 +2,7 @@
 local Draft = require(script.Parent.Draft)
 local None = require(script.Parent.None)
 local finishDraft = require(script.Parent.finishDraft)
+local isDraftable = require(script.Parent.isDraftable)
 
 -- i've tried two type definitions for recipes, neither of which are that great.
 
@@ -14,10 +15,10 @@ type Recipe<T> = ((draft: T) -> (T? | typeof(None)))
 
 --[=[
 	@within Immut
-	@param base table -- any table, so long as it doesn't have a metatable
+	@param base any -- any value is acceptable, so long as it isn't a table with a metatable
 	@param recipe (draft: Draft) -> any?
 
-	The primary way to use Immut. Takes a table and a recipe function which is
+	The primary way to use Immut. Takes a value and a recipe function which is
 	passed a draft that can be mutated, producing a new table with those changes
 	made to it.
 
@@ -49,7 +50,7 @@ type Recipe<T> = ((draft: T) -> (T? | typeof(None)))
 
 	:::tip
 	When in strict mode, recipes do need an explicit return. You can simply
-	return the draft or nothing to avoid type errors.
+	return the draft or nil to avoid type errors.
 	:::
 
 	```lua
@@ -59,7 +60,7 @@ type Recipe<T> = ((draft: T) -> (T? | typeof(None)))
 	```
 ]=]
 local function produce<T>(base: T, recipe: Recipe<T>): T?
-	local proxy = Draft.new(base)
+	local proxy = isDraftable(base) and Draft.new(base) or base :: T
 
 	local nextValue = recipe(proxy) or proxy
 

@@ -3,6 +3,7 @@ import { Draft } from "./types-external";
 import { Objectish } from "./types-internal";
 
 export { default as None } from "./None";
+export declare const nothing: typeof None;
 export * as table from "./table";
 
 export declare function createDraft<T extends Objectish>(base: T): Draft<T>;
