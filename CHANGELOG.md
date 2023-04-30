@@ -1,3 +1,14 @@
+## 0.4.0
+
+- All table library replacement functions can now use non-draft tables
+- Table library is now found under `Immut.table`
+- Added `table.sort`
+- Added `table.clear`
+- Added `makeDraftSafe`
+- Fixed Draft iterator not returning drafted versions of nested tables
+- `produce` will now finalize any drafts found in non-draft table return values
+- Added `None`
+
 ## 0.3.2
 
 - `insert` will no longer error when not providing a position
