@@ -9,9 +9,10 @@ A draft-based immutable data library based on [Immer](https://github.com/immerjs
 ```ts
 import Immut, { produce } from "@rbxts/immut";
 
-const oldState = ["foo"];
+let oldState: Array<string> | undefined;
 const newState = produce(oldState, (draft) => {
     if (!draft) return [];
+    if (draft.includes("foo")) return None;
 
     // draft.push(), draft.insert(), draft.unshift() NOT allowed as they compile to table.insert, which is not draft-safe
     Immut.table.insert(draft, "draft-safe");
