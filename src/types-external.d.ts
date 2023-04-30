@@ -1,6 +1,6 @@
 // from immer types-external.ts
 
-import { AnyObject } from "./type-internals";
+import { AnyObject } from "./types-internal";
 
 type PrimitiveType = number | string | boolean;
 
