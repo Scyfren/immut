@@ -1,3 +1,13 @@
+## 0.4.4
+
+- Fixed `finishDraft` mutating non-draft tables
+
+## 0.4.3
+
+- Added `makeDraftSafeReadOnly`
+- Added `table.find`
+- Added `table.concat`
+
 ## 0.4.2
 
 - `produce` now allows all values except tables with metatables as a base
